@@ -42,7 +42,7 @@ def help():
 
 
 def main():
-	print("Simple File Extension Sorter. Made by Rivus (Utoog) 2022\n")
+	print("Simple File Extension Sorter. Made by Rivus (Utoog) 2022 v1.0\n")
 	if len(sys.argv) == 1:
 		help()
 	try:
