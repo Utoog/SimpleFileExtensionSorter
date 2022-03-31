@@ -28,17 +28,17 @@ def sort(prefix):
 	with open("cfg.sfes", "w") as file:
 		file.write(prefix)
 	print(colored("Do not delete cfg.sfes file if you will need to unsort your files!", "yellow"))
-	exit()
+	sys.exit()
 
 
 def unsort(prefix):
-	print("in development")
-	exit()
+	print("this function is currently in development")
+	sys.exit()
 
 
 def help():
 	print(colored("Usage:\n-p (prefix) - sets prefixes for folders like '(prefix)txt' or '(prefix)doc'\n-n - create folders named by just extensions\n-h - shows this message\n-c - unsort, bring files back from folders (also deleting folders)", "yellow"))
-	exit()
+	sys.exit()
 
 
 def main():
@@ -49,7 +49,7 @@ def main():
 		optlist, args = getopt(sys.argv[1:], 'np:hc')
 	except GetoptError as e:
 		print(colored("Error: " + str(e) + ", use 'sfes -h' for help", "red"))
-		return False
+		sys.exit()
 
 	for opt, a in optlist:
 		if opt == "-h":
@@ -59,23 +59,23 @@ def main():
 			if yn.lower() == "y":
 				sort("")
 			elif yn.lower() == "n":
-				exit()
+				sys.exit()
 			else:
 				print("I`ll take that as no")
-				exit()
+				sys.exit()
 		elif opt == "-p":
 			if a not in "+=[]:;«,./\\:*? «<>|":
 				yn = input("Proceed? (yes or no? y/n):")
 				if yn.lower() == "y":
 					sort(a)
 				elif yn.lower() == "n":
-					exit()
+					sys.exit()
 				else:
 					print("I`ll take that as no")
-					exit()
+					sys.exit()
 			else:
 				print(colored("Error: Can't create folders with this prefix!", "red"))
-				exit()
+				sys.exit()
 		elif opt == "-c":
 			unsort(a)
 
