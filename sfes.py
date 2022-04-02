@@ -8,7 +8,7 @@ def sort(prefix):
 	files = os.listdir()
 	extensions = list()
 	for file in files:
-		if "." in file and os.path.basename(__file__) != file and os.path.isfile(file) and file != "desktop.ini":
+		if "." in file and os.path.basename(__file__) != file and os.path.isfile(file) and file != "desktop.ini" and file != "cfg.sfes":
 			extensions.append(file.split(".")[-1])
 
 	extensions = list(dict.fromkeys(extensions))
