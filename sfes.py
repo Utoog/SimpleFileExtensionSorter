@@ -2,6 +2,7 @@ import os
 import sys
 from getopt import *
 
+ver = "1.13"
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -35,12 +36,17 @@ def colored(text, color):
 			return text
 
 def sort(prefix):
-	files = os.listdir()
+	lsdir = os.listdir()
 	extensions = list()
+	files = list()
+
+	for i in range(len(lsdir)):
+		if os.path.isfile(lsdir[i]):
+			files.append(lsdir[i])
+
 	for file in files:
 		if "." in file and os.path.basename(__file__) != file and os.path.isfile(file) and file != "desktop.ini" and file != "cfg.sfes":
 			extensions.append(file.split(".")[-1])
-
 	extensions = list(dict.fromkeys(extensions))
 	for ext in extensions:
 		try:
@@ -66,7 +72,7 @@ def unsort(prefix):
 		with open("cfg.sfes") as file:
 			prefix = file.readlines()[0]
 	except FileNotFoundError:
-		print(colored("Error: cfg.sfes not found, cannot resort", "fail"))
+		print(colored("Error: cfg.sfes not found, cannot unsort", "fail"))
 		sys.exit()
 	files = os.listdir()
 	folders = list()
@@ -96,7 +102,7 @@ def help():
 
 
 def main():
-	print(colored("Simple File Extension Sorter v1.12\n", "header"))
+	print(colored(f"Simple File Extension Sorter v{ver}\n", "header"))
 	if len(sys.argv) == 1:
 		help()
 	try:
