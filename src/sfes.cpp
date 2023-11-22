@@ -2,22 +2,22 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
 void sort(char* prefix)
 {
-    //  TODO: бл€€€€ть сука ебучие массивы в си++ короче сука
-    std::vector<std::string> entities;
+    std::vector<std::filesystem::path> entities;
     std::ofstream ConfigFile("cfg.sfes");
     ConfigFile << prefix;
     ConfigFile.close();
-    std::cout << "This doesn't work yet, prefix is '" << prefix << "'" << std::endl;
-    std::string path = "./";
+    std::filesystem::path path = "./";
+    std::vector<std::string> extensions;
     for (const auto& entry : std::filesystem::directory_iterator(path))
     {
-        entities.push_back(entry.path().u8string());
-        //std::cout << entry.path().u8string() << std::endl;
+        entities.push_back(entry.path());
     }
-    for (int i = 0; i < entities.size(); i++)
+    int array_size = entities.size();
+    for (int i = 0; i < array_size; i++)
     {
         std::cout << entities[i] << std::endl;
     }
@@ -40,12 +40,11 @@ void help(void)
 
 int main(int argc, char* argv[])
 {
-    std::cout << "Simple File Extension Sorter (rewritten)" << std::endl;
+    std::cout << "Simple File Extension Sorter" << std::endl;
     if (argc > 1)
     {
         if (argv[1][1] == 'p' && argc == 3)
         {
-            std::cout << "PLEAEEASE:3WORK ALREADY:3" << std::endl;
             sort(argv[2]);
         }
         else if (argv[1][1] == 'n')
